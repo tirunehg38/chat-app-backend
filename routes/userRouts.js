@@ -1,0 +1,16 @@
+const router = require('express').Router();
+const user = require('../controller/userControl');
+const auth = require('../authMidlewier/authmidele');
+const rateLimit = require('../lib/rateLimit');
+router.post('/register', rateLimit, user.register);
+router.post('/login', rateLimit, user.login);
+router.use(auth);
+router.get('/check', user.check);
+router.post('/logout', user.logout);
+router.post('/heartbeat', user.heartbeat);
+router.get('/users', user.users);
+router.get('/profile', user.getProfile);
+router.patch('/profile', user.updateProfile);
+router.get('/profile/:id', user.getProfile);
+router.patch('/settings', user.settings);
+module.exports = router;

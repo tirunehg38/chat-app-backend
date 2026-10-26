@@ -1,0 +1,13 @@
+const router = require('express').Router();
+const chat = require('../controller/chatController');
+router.get('/', chat.list);
+router.post('/', chat.create);
+router.post('/read-all', chat.readAll);
+router.use('/:id', chat.access);
+router.get('/:id', chat.list);
+router.get('/:id/messages', chat.history);
+router.post('/:id/messages', chat.send);
+router.get('/:id/messages/:messageId/attachment', chat.download);
+router.post('/:id/read', chat.read);
+router.patch('/:id/preferences', chat.preferences);
+module.exports = router;
